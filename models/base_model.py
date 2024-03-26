@@ -11,11 +11,21 @@ from uuid import uuid4
 class BaseModel():
     """The BaseModel that defines all common attributes and methods"""
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """The consructor"""
-        self.id = str(uuid4())
-        created_at = datetime.now()
-        updated_at = datetime.now()
+        tm_format = "%Y-%m-%dT%H:%M:%S.%f"
+        if kwargs:
+            if 'created_at' in kwargs:
+                kwargs['created_at'] = datetime.strptime(kwargs['created_at'], tm_format)
+            if 'updated_at' in kwargs:
+                kwargs['updated_at'] = datetime.strptime(kwargs['updated_at'], tm_format)
+            for key, value in kwargs.items():
+                if key != '__class__':
+                    setattr(self, key, value)
+        else:
+            self.id = str(uuid4())
+            created_at = datetime.now()
+            updated_at = datetime.now()
 
     def __str__(self):
         """return a string representation of the object."""
@@ -33,11 +43,12 @@ class BaseModel():
             all keys/values of __dict__ of the instance.
         """
         inst_dict = {}
-        inst_dict["__class__"] = __class__.__name__
+        inst_dict["__class__"] = type(self).__name__
 
         for key, value in self.__dict__.items():
-            if type(value) is datetime:
+            if isinstance(value, datetime):
                 inst_dict[key] = value.isoformat()
             else:
                 inst_dict[key] = value
+
         return inst_dict
