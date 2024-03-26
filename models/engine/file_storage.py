@@ -36,13 +36,13 @@ class FileStorage():
         json_data = {}
         for key, value in self.__objects.items():
             json_data[key] = value.to_dict()
-        with open(self.__file_path, "w") as json_file:
+        with open(FileStorage.__file_path, "w") as json_file:
             json.dumps(json_data, json_file)
 
     def reload(self):
         """deserializes the JSON file to __objects if it exists"""
-        if os.path.exists(__file_path):
-            with open("__file_path", "r") as json_file:
+        if os.path.exists(self.__file_path):
+            with open(self._file_path, "r") as json_file:
                 serial_objects = json.load(json_file)
                 for key, value in serial_objects.items():
                     class_name, obj_id = key.split('.')
