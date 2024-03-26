@@ -19,7 +19,7 @@ class BaseModel():
 
     def __str__(self):
         """return a string representation of the object."""
-        base_name = __class__.__name__
+        base_name = type(self).__name__
         return "[{}] ({}) {}" .format(base_name, self.id, self.__dict__)
 
     def save(self):
