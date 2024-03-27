@@ -18,7 +18,7 @@ class HBNBCommand(cmd.Cmd):
         """to quit the console"""
         return True
 
-    def empty(self, line):
+    def emptyline(self):
         """empty line handling"""
         pass
 
