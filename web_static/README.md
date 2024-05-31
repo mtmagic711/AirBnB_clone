@@ -1,10 +1,10 @@
-Project: AirBnB Clone - Web Static
+Project: AirBnB Clone - Web Static.
 
 **Topic:** HTML, CSS, Front-end.
 
 In this project, we'll be working on the front end of our AirBnB clone step-by-step. The goal is to create simple HTML static pages, design prototypes, and add fake contents without any JavaScript or data loaded from any source.
 
-Learning Objectives
+Learning Objectives:
 
 By the end of this project, you should be able to explain the following without relying on Google:
 
